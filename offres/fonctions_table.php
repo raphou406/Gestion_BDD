@@ -100,39 +100,6 @@ function ajouteUneOffre(array $offre) : array {
     return getOffreById($newOffreId);
 }
 
-function ajouteNouvelleOffre(array $offre) : array {
-    $ptrDB = connexion();
-
-    // Vérification si l'offre existe déjà avec tous ses attributs
-    $checkQuery = "SELECT offre_id FROM g19_offre 
-                   WHERE plat_id = $1 
-                   AND offre_nom = $2 
-                   AND offre_prix = $3 
-                   AND offre_code_iso = $4
-                   AND offre_engagement = $5
-                   AND offre_audio = $6
-                   AND offre_video = $7";
-    pg_prepare($ptrDB, "reqPrepCheckOffreExists", $checkQuery);
-    $checkResult = pg_execute($ptrDB, "reqPrepCheckOffreExists", array(
-        $offre['plat_id'],
-        $offre['offre_nom'],
-        $offre['offre_prix'],
-        $offre['offre_code_iso'],
-        $offre['offre_engagement'],
-        $offre['offre_audio'],
-        $offre['offre_video']
-    ));
-
-    // Si une offre avec les mêmes critères existe déjà, retourner un message d'erreur
-    if (pg_num_rows($checkResult) > 0) {
-        pg_free_result($checkResult);
-        pg_close($ptrDB);
-        return array("message" => "Une offre identique existe déjà.");
-    }
-
-    // Si l'offre n'existe pas, insérer la nouvelle offre
-    return ajouteUneOffre($offre);
-}
 
 function updateOffre(array $offre) : array {
     $ptrDB = connexion();
@@ -170,6 +137,25 @@ function updateOffre(array $offre) : array {
 
     // Retourner l'offre mise à jour
     return getOffreById($updatedOffreId);
+}
+
+function deletePlateforme(int $offre_id) : array {
+    $ptrDB = connexion();
+
+    // Préparer la requête SQL de suppression
+    $query = "DELETE FROM g19_offre WHERE offre_id = $1";
+
+    pg_prepare($ptrDB, "reqPrepDeletePlateforme", $query);
+
+    // Exécuter la requête de suppression
+    $ptrQuery = pg_execute($ptrDB, "reqPrepDeletePlateforme", array($plat_id));
+
+    // Libérer les ressources et fermer la connexion
+    pg_free_result($ptrQuery);
+    pg_close($ptrDB);
+
+    // Retourner un message de confirmation
+    return array("message" => "Plateforme avec ID $plat_id supprimée.");
 }
 
 ?>

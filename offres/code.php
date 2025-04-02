@@ -1,6 +1,6 @@
 <?php
-$_CODE['Base_de_donne']='172.16.20.14';
-$_CODE['Nom']='mr231103';
-$_CODE['Utilisateur']='mr231103';
+$_CODE['Base_de_donne']='localhost';
+$_CODE['Nom']='raphou';
+$_CODE['Utilisateur']='raphou';
 $_CODE['Mot_de_passe']='20231103';
 ?>

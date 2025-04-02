@@ -11,17 +11,15 @@ $plateformes = renvoiToutesLesPlateformes();
 </head>
 <br>
     <h2>Formulaire d'insertion d'une nouvelle offre</h2>
-    <br action="inserer_table.php" method="POST">
+    <form action="inserer_table.php" method="POST">
         <label for="plat_id">Plat ID:</label>
         <select name="plat_id" id="plat_id">
             <?php 
-            foreach($plat as $plateformes){
-                $nom = $offre['plat_nom'];
-                echo ($nom);
-                echo "<option value='$nom' name = 'plat_nom'>$nom</option>";
+            foreach($plateformes as $plat){
+                echo "<option value='$plat[plat_id]' name = 'plat_id'>$plat[plat_nom]</option>";
             }
             ?>
-        </select></br></br>
+        </select></br><br>
 
         <label for="offre_nom">Nom de l'offre:</label>
         <input type="text" id="offre_nom" name="offre_nom" required><br><br>

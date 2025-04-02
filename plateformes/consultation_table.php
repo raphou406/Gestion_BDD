@@ -1,6 +1,6 @@
 <?php
 require 'fonctions_table.php';
-$offres = renvoiToutesLesOffres();
+$plateformes = renvoiToutesLesPlateformes();
 ?>
 
 <!DOCTYPE html>
@@ -8,29 +8,28 @@ $offres = renvoiToutesLesOffres();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulter les Offres</title>
+    <title>Consulter les plateformes</title>
 </head>
 <body>
-    <h1>Consulter les offres</h1>
-    <h3>Toutes les offres :</h3>
+    <h1>Table des plateformes</h1>
 
-    <?php if (count($offres) > 0): ?>
+    <h3>ajoute une plateforme</h3>
+    <button onclick="window.location.href = 'insertion_table.html';" title="ajoute_plateforme">Ajouter une nouvelle plateforme</button>
+    <h3>Toutes les plateformes :</h3>
+
+    <?php if (count($plateformes) > 0): ?>
         <table border="1">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nom de l'offre</th>
-                    <th>Prix</th>
-                    <th>Engagement</th>
+                    <th>Nom de la plateforme</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($offres as $offre): ?>
+                <?php foreach ($plateformes as $plat): ?>
                     <tr>
-                        <td><?php echo $offre['offre_id']; ?></td>
-                        <td><?php echo $offre['offre_nom']; ?></td>
-                        <td><?php echo $offre['offre_prix']; ?> €</td>
-                        <td><?php echo $offre['offre_engagement']; ?> mois</td>
+                        <td><?php echo $plat['plat_id']; ?></td>
+                        <td><?php echo $plat['plat_nom']; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -38,5 +37,7 @@ $offres = renvoiToutesLesOffres();
     <?php else: ?>
         <p>Aucune offre disponible.</p>
     <?php endif; ?>
+    <br>
+    <button onclick="window.location.href = '../index.php';" title="home">Menu Home</button>
 </body>
 </html>

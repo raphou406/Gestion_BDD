@@ -8,31 +8,9 @@
 <body>
     <h2>Formulaire d'insertion d'une nouvelle offre</h2>
     <form action="inserer_table.php" method="POST">
-        <label for="plat_id">Plat ID:</label>
-        <input type="number" id="plat_id" name="plat_id" required><br><br>
-
-        <label for="offre_nom">Nom de l'offre:</label>
-        <input type="text" id="offre_nom" name="offre_nom" required><br><br>
-
-        <label for="offre_prix">Prix de l'offre:</label>
-        <input type="number" step="0.01" id="offre_prix" name="offre_prix" required><br><br>
-
-        <label for="offre_code_iso">Code ISO (devise):</label>
-        <select name = 'offre_code_iso' id = 'offre_code_iso'>
-            <option name = 'offre_code_iso' value = 'EUR'>EUR</option>
-            <option name = 'offre_code_iso' value = 'USD'>USD</option>;
-        </select> </br></br>
-
-        <label for="offre_engagement">Engagement (mois):</label>
-        <input type="number" id="offre_engagement" name="offre_engagement" required><br><br>
-
-        <label for="offre_audio">Offre avec audio:</label>
-        <input type="checkbox" id="offre_audio" name="offre_audio" value="TRUE"><br><br>
-
-        <label for="offre_video">Offre avec vidéo:</label>
-        <input type="checkbox" id="offre_video" name="offre_video" value="TRUE"><br><br>
-
-        <input type="submit" value="Ajouter l'offre">
+        <label for="plat_nom">Nom de la plateforme:</label>
+        <input type="text" id="plat_nom" name="plat_nom" required><br><br>
+        <input type="submit" value="Ajouter la plateforme">
     </form>
 </body>
 </html>

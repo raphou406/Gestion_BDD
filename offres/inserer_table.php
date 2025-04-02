@@ -25,9 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 
     // Appeler la fonction pour ajouter l'offre dans la base de données
-    if (!ajouteNouvelleOffre($offre)){
-        updateOffre($offre);
-    }
+    ajouteUneOffre($offre);
 }
 header("Location: consultation_table.php");
 ?>

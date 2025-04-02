@@ -13,7 +13,7 @@ $offres = renvoiToutesLesOffres();
 <body>
     <h1>Tables des offres</h1>
     <h3>Ajouter une nouvelle offre</h3>
-    <a href="insertion_table.html" title="ajoute_offre">Ajouter une nouvelle offre</a>
+    <button onclick="window.location.href = 'insertion_table.php';" title="ajoute_offre">Ajouter une nouvelle offre</button>
     <h3>Toutes les offres :</h3>
 
     <?php if (count($offres) > 0): ?>
@@ -39,6 +39,8 @@ $offres = renvoiToutesLesOffres();
                         <td><?php echo $offre['offre_video'] == 't'? "Oui" : "Non"; ?></td>
                         <td><?php echo $offre['offre_audio'] == 't'? "Oui" : "Non"; ?></td>
                         <td><?php echo getNomPlateformeById($offre['plat_id'])[0]['plat_nom']; ?></td>
+                        <td><button>supprime</button></td>
+                        <td><button>modifie</button></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -46,5 +48,7 @@ $offres = renvoiToutesLesOffres();
     <?php else: ?>
         <p>Aucune offre disponible.</p>
     <?php endif; ?>
+    <br>
+    <button onclick="window.location.href = '../index.php';" title="home">Menu Home</button>
 </body>
 </html>
