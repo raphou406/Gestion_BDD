@@ -1,9 +1,8 @@
 <?php
-require 'fonctions_table.php';
+require_once 'fonctions_offre.php';
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    connexion();
     // Récupérer les données du formulaire
     $plat_id = isset($_POST['plat_id']) ? $_POST['plat_id'] : null;
     $offre_nom = isset($_POST['offre_nom']) ? $_POST['offre_nom'] : null;

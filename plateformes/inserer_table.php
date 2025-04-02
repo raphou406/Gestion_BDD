@@ -1,5 +1,5 @@
 <?php
-require 'fonctions_table.php';
+require_once 'fonctions_plateforme.php';
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

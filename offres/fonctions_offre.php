@@ -1,14 +1,6 @@
 <?php
 
-require 'code.php';
-
-function connexion(){
-	include ('code.php');
-	$strConnex = "host=$_CODE[Base_de_donne] dbname=$_CODE[Nom] user=$_CODE[Utilisateur] password=$_CODE[Mot_de_passe]";
-	$ptrDB = pg_connect($strConnex);
-    if (!$ptrDB) exit ('connexion impossible');
-	return $ptrDB;
-}
+require_once "../utils/connexion.php";
 
 function renvoiToutesLesOffres(): array {
     $ptrDB = connexion();
@@ -32,13 +24,13 @@ function renvoiToutesLesOffres(): array {
 }
 
 
-function getOffreById(int $plat_id) : array {
+function getOffreById(int $offre_id) : array {
     $ptrDB = connexion();
 
-    $query = "SELECT * FROM g19_offre WHERE plat_id = $1";
-    pg_prepare($ptrDB, "reqPrepSelectByPlatId", $query);
+    $query = "SELECT * FROM g19_offre WHERE offre_id = $1";
+    pg_prepare($ptrDB, "reqPrepSelectByOffreId", $query);
 
-    $ptrQuery = pg_execute($ptrDB, "reqPrepSelectByPlatId", array($plat_id));
+    $ptrQuery = pg_execute($ptrDB, "reqPrepSelectByOffreId", array($offre_id));
 
     $resu = array();
 
@@ -58,8 +50,8 @@ function getNomPlateformeById(int $plat_id) : array {
     $ptrDB = connexion();
 
     $query = "SELECT plat_nom FROM G19_Plateforme WHERE plat_id = $1"; // Sécurisé
-    pg_prepare($ptrDB, "reqPrepSelectByPlatId", $query);
-    $ptrQuery = pg_execute($ptrDB, "reqPrepSelectByPlatId", array($plat_id));
+    pg_prepare($ptrDB, "reqPrepSelectByPlatNom", $query);
+    $ptrQuery = pg_execute($ptrDB, "reqPrepSelectByPlatNom", array($plat_id));
 
     $resu = pg_fetch_all($ptrQuery) ?: []; // Renvoie un tableau vide si aucune donnée
 
@@ -139,16 +131,16 @@ function updateOffre(array $offre) : array {
     return getOffreById($updatedOffreId);
 }
 
-function deletePlateforme(int $offre_id) : array {
+function deleteOffre(int $plat_id) : array {
     $ptrDB = connexion();
 
     // Préparer la requête SQL de suppression
     $query = "DELETE FROM g19_offre WHERE offre_id = $1";
 
-    pg_prepare($ptrDB, "reqPrepDeletePlateforme", $query);
+    pg_prepare($ptrDB, "reqPrepDeleteOffre", $query);
 
     // Exécuter la requête de suppression
-    $ptrQuery = pg_execute($ptrDB, "reqPrepDeletePlateforme", array($plat_id));
+    $ptrQuery = pg_execute($ptrDB, "reqPrepDeleteOffre", array($plat_id));
 
     // Libérer les ressources et fermer la connexion
     pg_free_result($ptrQuery);

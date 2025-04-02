@@ -1,5 +1,5 @@
 <?php
-require 'fonctions_table.php';
+require_once 'fonctions_offre.php';
 $offres = renvoiToutesLesOffres();
 ?>
 
@@ -34,13 +34,23 @@ $offres = renvoiToutesLesOffres();
                     <tr>
                         <td><?php echo $offre['offre_id']; ?></td>
                         <td><?php echo $offre['offre_nom']; ?></td>
-                        <td><?php echo $offre['offre_prix']; ?> €</td>
+                        <td><?php echo $offre['offre_prix']; echo $offre['offre_code_iso']?></td>
                         <td><?php echo $offre['offre_engagement']; ?> mois</td>
                         <td><?php echo $offre['offre_video'] == 't'? "Oui" : "Non"; ?></td>
                         <td><?php echo $offre['offre_audio'] == 't'? "Oui" : "Non"; ?></td>
                         <td><?php echo getNomPlateformeById($offre['plat_id'])[0]['plat_nom']; ?></td>
-                        <td><button>supprime</button></td>
-                        <td><button>modifie</button></td>
+                        <td>
+                            <form method="get" action="supprimer_table.php">
+                            <input type="hidden" name="offre_id" value="<?php echo $offre['offre_id']; ?>">
+                            <button type="submit">Supprimer</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="get" action="modifie_table.php">
+                            <input type="hidden" name="offre_id" value="<?php echo $offre['offre_id']; ?>">
+                            <button type="submit">Modifier</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

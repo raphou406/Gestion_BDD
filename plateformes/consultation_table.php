@@ -1,5 +1,5 @@
 <?php
-require 'fonctions_table.php';
+require_once 'fonctions_plateforme.php';
 $plateformes = renvoiToutesLesPlateformes();
 ?>
 

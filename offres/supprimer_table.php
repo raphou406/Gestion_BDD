@@ -1,12 +1,6 @@
 <?php
-require 'fonctions_table.php';
+require_once 'fonctions_offre.php';
 
-// Vérifier si le formulaire a été soumis
-connexion();
-// Récupérer les données du formulaire
-
-// Construire le tableau d'offre
-
-delete($offre_id);
+deleteOffre($_GET['offre_id']);
 header("Location: consultation_table.php");
 ?>
