@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Appeler la fonction pour ajouter l'offre dans la base de données
     $result = ajouteUnePlateforme($plateforme);
 
-    // Afficher un message de succès ou d'erreur
+    // pour le debug
     if (isset($result['offre_id'])) {
         echo "L'offre a été ajoutée avec succès. ID de l'offre: " . $result['offre_id'];
     } else {

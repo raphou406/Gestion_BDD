@@ -1,4 +1,6 @@
 <?php
+session_start();
+$_SESSION["table"] = "g19_offre";
 require_once 'fonctions_offre.php';
 $offres = renvoiToutesLesOffres();
 ?>
@@ -8,6 +10,7 @@ $offres = renvoiToutesLesOffres();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Offres</title>
 </head>
 <body>
@@ -46,7 +49,7 @@ $offres = renvoiToutesLesOffres();
                             </form>
                         </td>
                         <td>
-                            <form method="get" action="modifie_table.php">
+                            <form method="get" action="modifier_table.php">
                             <input type="hidden" name="offre_id" value="<?php echo $offre['offre_id']; ?>">
                             <button type="submit">Modifier</button>
                             </form>

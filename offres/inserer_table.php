@@ -9,8 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $offre_prix = isset($_POST['offre_prix']) ? $_POST['offre_prix'] : null;
     $offre_code_iso = isset($_POST['offre_code_iso']) ? $_POST['offre_code_iso'] : 'EUR';
     $offre_engagement = isset($_POST['offre_engagement']) ? $_POST['offre_engagement'] : null;
-    $offre_audio = isset($_POST['offre_audio']) ? true : false;
-    $offre_video = isset($_POST['offre_video']) ? true : false;
+    $offre_audio = isset($_POST['offre_audio']) ? 't' : 'f';
+    $offre_video = isset($_POST['offre_video']) ? 't' : 'f';
+
 
     // Construire le tableau d'offre
     $offre = [
@@ -26,5 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Appeler la fonction pour ajouter l'offre dans la base de données
     ajouteUneOffre($offre);
 }
+
 header("Location: consultation_table.php");
 ?>

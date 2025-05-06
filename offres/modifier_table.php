@@ -3,8 +3,9 @@ require_once '../plateformes/fonctions_plateforme.php';
 $plateformes = renvoiToutesLesPlateformes();
 
 require_once 'fonctions_offre.php';
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+// si on recoit un get alors on propose le menu de modification 
+// si c'est un post on modifie reellement
+if ($_SERVER['REQUEST_METHOD'] === 'GET') { 
         $offre_id = isset($_GET['offre_id']) ? $_GET['offre_id'] : null;
         $offre = getOffreById($offre_id);
 }else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,26 +40,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <link rel="stylesheet" href="../css/ajoute.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modification d'une Offre</title>
 </head>
 <body>
-    <h2>Formulaire d'insertion d'une nouvelle offre</h2>
-    <form action="modifie_table.php" method="POST">
+    <h2>Formulaire de modification d'offre</h2>
+    <form action="modifier_table.php" method="POST">
         <input type="hidden" name="offre_id" value="<?php echo $offre_id; ?>">
         <label for="plat_id">Plat ID:</label>
         <select name="plat_id" id="plat_id">
-            <?php 
-            //$defaultPlateforme = getNomPlateformeById($offre['plat_id'])[0]['plat_nom'];
-            //echo "<option value='$defaultPlateforme' name = 'plat_id'>$defaultPlateforme</option>";
+            <?php
             foreach($plateformes as $plat){
                 echo "<option value='$plat[plat_id]' name = 'plat_id'>$plat[plat_nom]</option>";
             }
             ?>
         </select></br><br>
 
-        <label for="offre_nom">Nom de l'offre:</label>
+        <label for="offre_nom">Nouveau nom de l'offre:</label>
         <input type="text" id="offre_nom" name="offre_nom" value="<?php echo $offre[0]['offre_nom'] ;?>" required><br><br>
 
         <label for="offre_prix">Prix de l'offre:</label>
