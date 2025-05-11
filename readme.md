@@ -10,7 +10,7 @@ puis modifier les identifiants de connexion dans `utils/code.php` avec vos ident
 
 ## Authors
 
-- [@Clément Lefevres-Scoazeque](https://github.com/Lefevres)
+- [@Clément Lefevres-Scoazec](https://github.com/Lefevres)
 - [@Henri Suzuki](https://github.com/Guppy-s-Code)
 - [@Raphaël Maquin](https://github.com/Raphou406)
 
